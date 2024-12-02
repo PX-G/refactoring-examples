@@ -74,3 +74,19 @@ def apply_cohesion(boids, boid):
     center_y = np.mean([b.y for b in boids])
     boid.vx += (center_x - boid.x) * COHESION_FACTOR
     boid.vy += (center_y - boid.y) * COHESION_FACTOR
+
+def apply_alignment(boids, boid):
+    """Adjust the boid's velocity to align with nearby boids.
+
+    Args:
+        boids (list): A list of all boids in the simulation.
+        boid (Boid): The current boid being adjusted.
+    """
+    nearby_boids = [b for b in boids if b is not boid and 
+                    (boid.x - b.x) ** 2 + (boid.y - b.y) ** 2 < ALIGN_RADIUS ** 2]
+    
+    if nearby_boids:
+        avg_vx = np.mean([b.vx for b in nearby_boids])
+        avg_vy = np.mean([b.vy for b in nearby_boids])
+        boid.vx += (avg_vx - boid.vx) * ALIGNMENT_FACTOR
+        boid.vy += (avg_vy - boid.vy) * ALIGNMENT_FACTOR
