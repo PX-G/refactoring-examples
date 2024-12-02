@@ -62,3 +62,15 @@ def create_boids(num_boids):
                  np.random.uniform(0, 10.0), 
                  np.random.uniform(-20.0, 20.0))
             for _ in range(num_boids)]
+
+def apply_cohesion(boids, boid):
+    """Adjust the boid's velocity towards the average position of nearby boids.
+
+    Args:
+        boids (list): A list of all boids in the simulation.
+        boid (Boid): The current boid being adjusted.
+    """
+    center_x = np.mean([b.x for b in boids])
+    center_y = np.mean([b.y for b in boids])
+    boid.vx += (center_x - boid.x) * COHESION_FACTOR
+    boid.vy += (center_y - boid.y) * COHESION_FACTOR
