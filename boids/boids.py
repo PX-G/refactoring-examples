@@ -10,11 +10,14 @@ from matplotlib import animation
 
 import random
 
-boids_x=[random.uniform(-450,50.0) for x in range(50)]
-boids_y=[random.uniform(300.0,600.0) for x in range(50)]
-boid_x_velocities=[random.uniform(0,10.0) for x in range(50)]
-boid_y_velocities=[random.uniform(-20.0,20.0) for x in range(50)]
-boids=(boids_x,boids_y,boid_x_velocities,boid_y_velocities)
+# Constants with default parameters
+NUM_BOIDS = 50
+WIDTH, HEIGHT = 500, 600
+NEARBY_RADIUS = 100
+ALIGN_RADIUS = 100
+COHESION_FACTOR = 0.01
+SEPARATION_FACTOR = 1.0
+ALIGNMENT_FACTOR = 0.125
 
 def update_boids(boids):
     xs,ys,xvs,yvs=boids
