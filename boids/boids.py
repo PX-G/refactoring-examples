@@ -75,6 +75,20 @@ def apply_cohesion(boids, boid):
     boid.vx += (center_x - boid.x) * COHESION_FACTOR
     boid.vy += (center_y - boid.y) * COHESION_FACTOR
 
+def apply_separation(boids, boid):
+    """Adjust the boid's velocity to avoid crowding nearby boids.
+
+    This behavior prevents boids from getting too close to one another.
+
+    Args:
+        boids (list of Boid): The list of all boids in the simulation.
+        boid (Boid): The boid to be adjusted.
+    """
+    for other in boids:
+        if boid is not other and (boid.x - other.x) ** 2 + (boid.y - other.y) ** 2 < NEARBY_RADIUS ** 2:
+            boid.vx += (boid.x - other.x) * SEPARATION_FACTOR
+            boid.vy += (boid.y - other.y) * SEPARATION_FACTOR
+
 def apply_alignment(boids, boid):
     """Adjust the boid's velocity to align with nearby boids.
 
@@ -90,3 +104,4 @@ def apply_alignment(boids, boid):
         avg_vy = np.mean([b.vy for b in nearby_boids])
         boid.vx += (avg_vx - boid.vx) * ALIGNMENT_FACTOR
         boid.vy += (avg_vy - boid.vy) * ALIGNMENT_FACTOR
+
