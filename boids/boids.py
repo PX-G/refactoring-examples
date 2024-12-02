@@ -4,7 +4,7 @@ A deliberately bad implementation of
 for use as an exercise on refactoring.
 This code simulates the swarming behaviour of bird-like objects ("boids").
 """
-
+import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib import animation
 
