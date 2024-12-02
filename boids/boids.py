@@ -47,3 +47,18 @@ class Boid:
         """Update the boid's position based on its current velocity."""
         self.x += self.vx
         self.y += self.vy
+
+def create_boids(num_boids):
+    """Create a list of boids with random starting positions and velocities.
+
+    Args:
+        num_boids (int): The number of boids to create.
+
+    Returns:
+        list: A list of Boid objects.
+    """
+    return [Boid(np.random.uniform(-450, 50.0), 
+                 np.random.uniform(300.0, 600.0),
+                 np.random.uniform(0, 10.0), 
+                 np.random.uniform(-20.0, 20.0))
+            for _ in range(num_boids)]
