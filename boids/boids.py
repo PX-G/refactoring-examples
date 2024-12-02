@@ -105,3 +105,10 @@ def apply_alignment(boids, boid):
         boid.vx += (avg_vx - boid.vx) * ALIGNMENT_FACTOR
         boid.vy += (avg_vy - boid.vy) * ALIGNMENT_FACTOR
 
+def update_boids(boids):
+    """Update all boids by applying the flocking behaviors and updating positions."""
+    for boid in boids:
+        apply_cohesion(boids, boid)
+        apply_separation(boids, boid)
+        apply_alignment(boids, boid)
+        boid.update()
