@@ -112,3 +112,7 @@ def update_boids(boids):
         apply_separation(boids, boid)
         apply_alignment(boids, boid)
         boid.update()
+
+if __name__ == "__main__":
+    # Initialize the boids and visualization components
+    boids = create_boids(NUM_BOIDS)
